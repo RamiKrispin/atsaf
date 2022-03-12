@@ -15,7 +15,7 @@ Below is the book roadmap:
 * `V3` - Advanced regression methods (GLM, GAM, etc.)
 * `V4` - Bayesian forecasting approaches
 * `V5` - Machine and deep learning methods
-* `V6` - Scaling and production
+* `V6` - Scaling and production approaches
 
 ### Docker
 While it is not required, the book is built with Docker to ensure a high level of reproducibility. 
