@@ -1,6 +1,6 @@
-## Applied Time Series Analysis and Forecasting with R
+## Applied Time Series Analysis and Forecasting
 
-This repository hosts the book Applied Time Series Analysis and Forecasting with R. It follows the Monorepo philosophy, hosting all the book's content, code, packages, and other supporting materials.
+This repository hosts the book Applied Time Series Analysis and Forecasting. It follows the Monorepo philosophy, hosting all the book's content, code, packages, and other supporting materials.
 
 As the name implies, the book focuses on applied data science methods for time series analysis and forecasting, covering (see the full table of content below):
 * Working with time-series data 
