@@ -1,0 +1,42 @@
+{
+    "packages": [
+        {
+            "package": "cpp11",
+            "version":"0.4.2"
+        },
+        {
+            "package": "flexdashboard",
+            "version":"0.5.2"
+        },
+        {
+            "package": "dplyr",
+            "version":"1.0.9"
+        },
+        {
+            "package": "tidyr",
+            "version":"1.2.0"
+        },
+        {
+            "package": "plotly",
+            "version":"4.10.0"
+        },
+        {
+            "package": "lubridate",
+            "version":"1.8.0"
+        }
+        
+       
+    ],
+    "debug_mode": [
+        {
+            "package": "ragg",
+            "version":"1.2.2"
+        }
+    ],
+    "python_packages": [
+        {
+            "package": "radian",
+            "version": "0.6.3"
+        }
+    ]
+}
