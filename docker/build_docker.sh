@@ -2,7 +2,7 @@
 
 echo "Build the docker"
 
-docker build . -t rkrispin/atsaf:dev.0.0.0.9000
+docker build . --progress=plain --build-arg CONDA_ENV=atsaf -t rkrispin/atsaf:dev.0.0.0.9000
 
 if [[ $? = 0 ]] ; then
 echo "Pushing docker..."

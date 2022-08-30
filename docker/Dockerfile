@@ -2,7 +2,7 @@
 FROM rocker/rstudio:4.2
 
 # Setting environment variables
-ARG CONDA_ENV=atsaf_dashboard
+ARG CONDA_ENV=atsaf
 ENV CONDA_ENV=$CONDA_ENV
 
 ARG PYTHON_VER=3.10
@@ -41,7 +41,7 @@ RUN Rscript packages/install_packages.R
 
 # Installing Quarto
 COPY install_quarto.sh packages/
-RUN  bash packages/install_quarto.sh ${QUARTO_VERSION}
+RUN  bash packages/install_quarto.sh $QUARTO_VERSION
 
 # Install miniconda
 RUN sudo apt update && apt-get install -y --no-install-recommends \
@@ -58,6 +58,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 # Set environment
 RUN . /root/.bashrc \
     && conda create -y --name $CONDA_ENV python=$PYTHON_VER 
+
+RUN echo "conda activate $CONDA_ENV" >> ~/.bashrc
 
 RUN Rscript packages/install_python.R
 
