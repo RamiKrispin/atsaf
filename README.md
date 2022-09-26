@@ -1,12 +1,26 @@
 ## Applied Time Series Analysis and Forecasting
 
-This repository hosts the book Applied Time Series Analysis and Forecasting. It follows the Monorepo philosophy, hosting all the book's content, code, packages, and other supporting materials.
-
 As the name implies, the book focuses on applied data science methods for time series analysis and forecasting, covering (see the full table of content below):
 * Working with time-series data 
 * Time series analysis methods
 * Forecasting methods
 * Scaling and productionize approaches
+
+
+This repository hosts the book materials. It follows the [Monorepo](https://en.wikipedia.org/wiki/Monorepo) philosophy, hosting all the book's content, code, packages, and other supporting materials under one repository. In addition, to ensure a high level of reproducibility, the book is developed in a dockerized environment.
+
+Here is the current folders structure:
+
+``` shell
+.
+├── R
+└── docker
+```
+
+The `R` and `docker` folders contain the book's supporting R packages and Docker image, respectively. 
+
+
+
 
 ### Roadmap
 Below is the book roadmap:
