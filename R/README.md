@@ -1,4 +1,4 @@
-## Applied Time Series Analysis and Forecasting
+# Applied Time Series Analysis and Forecasting with R
 
 This repository hosts the book Applied Time Series Analysis and Forecasting. It follows the Monorepo philosophy, hosting all the book's content, code, packages, and other supporting materials.
 
@@ -8,7 +8,7 @@ As the name implies, the book focuses on applied data science methods for time s
 * Forecasting methods
 * Scaling and productionize approaches
 
-### Roadmap
+## Roadmap
 Below is the book roadmap:
 * `V1` - Foundation of time series analysis
 * `V2` - Traditional time series forecasting methods (Smoothing, ARIMA, Linear Regression)
@@ -17,11 +17,11 @@ Below is the book roadmap:
 * `V5` - Machine and deep learning methods
 * `V6` - Scaling and production approaches
 
-### Docker
+## Docker
 While it is not required, the book is built with Docker to ensure a high level of reproducibility. 
 
 
-### Table of Contents 
+## Table of Contents 
 - [ ] Preface (V1)
 - [ ] Introduction (V1)
 - [ ] Prerequisites (V1)
@@ -47,7 +47,6 @@ While it is not required, the book is built with Docker to ensure a high level o
 - [ ] Forecasting with Deep Learning Methods (V5)
 - [ ] Forecasting at Scale (V6)
 - [ ] Forecasting in Production (V6)
-
 
 ## License
 
