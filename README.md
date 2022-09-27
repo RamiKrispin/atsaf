@@ -9,13 +9,18 @@ As the name implies, the book focuses on applied data science methods for time s
 
 This repository hosts the book materials. It follows the [Monorepo](https://en.wikipedia.org/wiki/Monorepo) philosophy, hosting all the book's content, code, packages, and other supporting materials under one repository. In addition, to ensure a high level of reproducibility, the book is developed in a dockerized environment.
 
-Here is the current folders structure:
+Here is the current repository folder structure:
 
 ``` shell
 .
 ├── R
-└── docker
+├── docker
+└── docs
 ```
+- The `R` folder contains the book's supporting R packages
+- The `docker` folder provides the build files for the book Docker image
+- The `docs` folder hosts the book website files
+
 
 The `R` and `docker` folders contain the book's supporting R packages and Docker image, respectively. 
 
