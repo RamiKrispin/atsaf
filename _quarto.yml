@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Applied Time Series Analysis and Forecasting with R"
+  title: "Applied Time Series Analysis with R"
   author: "Rami Krispin"
   date: "9/27/2022"
   chapters:
