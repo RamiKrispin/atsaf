@@ -14,6 +14,7 @@ book:
     - the_ts_class.qmd
     - the_timetk_class.qmd
     - the_tsibble_class.qmd
+    - plotting_time_series_objects.qmd
     - seasonal_analysis.qmd
     - correlation_analysis.qmd
     - smoothing_methods.qmd
