@@ -22,11 +22,6 @@ Here is the current repository folder structure:
 - The `docs` folder hosts the book website files
 
 
-The `R` and `docker` folders contain the book's supporting R packages and Docker image, respectively. 
-
-
-
-
 ### Roadmap
 Below is the book roadmap:
 * `V1` - Foundation of time series analysis
