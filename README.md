@@ -1,4 +1,4 @@
-## Applied Time Series Analysis and Forecasting
+## Applied Time Series Analysis and Forecasting with R
 
 As the name implies, the book focuses on applied data science methods for time series analysis and forecasting, covering (see the full table of content below):
 * Working with time-series data 
