@@ -41,7 +41,7 @@ While it is not required, the book is built with Docker to ensure a high level o
 - [ ] Prerequisites (V1)
 - [ ] Dates and Times Objects (V1)
 - [ ] The ts Class (V1)
-- [ ] The timetk Class (V5)
+- [ ] The timetk Class (V1)
 - [ ] The tsibble Class (V1)
 - [ ] Working with APIs (V2)
 - [ ] Seasonal Analysis (V1)
