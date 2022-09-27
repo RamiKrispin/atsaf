@@ -1,0 +1,33 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Applied Time Series Analysis and Forecasting with R"
+  author: "Rami Krispin"
+  date: "9/27/2022"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - prerequisites.qmd
+    - dates_and_time_objects.qmd
+    - the_ts_class.qmd
+    - the_timetk_class.qmd
+    - the_tsibble_class.qmd
+    - seasonal_analysis.qmd
+    - correlation_analysis.qmd
+    - smoothing_methods.qmd
+    - time_series_decomposition.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+
