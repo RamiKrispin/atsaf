@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rami Krispin">
-<meta name="dcterms.date" content="2022-09-27">
+<meta name="dcterms.date" content="2022-09-29">
 
-<title>Applied Time Series Analysis with R</title>
+<title>Applied Time Series Analysis and Forecasting with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Applied Time Series Analysis with R</h1>
+      <h1 class="quarto-secondary-nav-title">Applied Time Series Analysis and Forecasting with R</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -84,7 +84,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Applied Time Series Analysis with R</a> 
+      <a href="./">Applied Time Series Analysis and Forecasting with R</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -173,7 +173,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
+  <li><a href="#audience" id="toc-audience" class="nav-link" data-scroll-target="#audience">Audience</a></li>
+  <li><a href="#roadmap" id="toc-roadmap" class="nav-link" data-scroll-target="#roadmap">Roadmap</a></li>
+  <li><a href="#reproducability" id="toc-reproducability" class="nav-link" data-scroll-target="#reproducability">Reproducability</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Applied Time Series Analysis with R</h1>
+<h1 class="title d-none d-lg-block">Applied Time Series Analysis and Forecasting with R</h1>
 </div>
 
 
@@ -199,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 27, 2022</p>
+      <p class="date">September 29, 2022</p>
     </div>
   </div>
     
@@ -210,9 +216,37 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This is a placeholder.</p>
+<p>Welcome to the website of <strong>Applied Time Series Analysis and forecasting with R</strong>! This is an early “work in progress”, and the book chapters will be added gradually in the coming months. Thank you for your patience.</p>
+<p>As its name implies, this book focuses on applied methods for handling and analyzing time series data and building forecasting models using R. That includes working with time series data and objects, using data visualization methods to explore the data, and using statistical methods to generate a forecast. In addition, we will spend some time on approaches for scaling and productionize your work by using fun examples.</p>
+<section id="audience" class="level2">
+<h2 class="anchored" data-anchor-id="audience">Audience</h2>
+<p>This book assumes that you don’t have any previous background in time series analysis and forecasting but have some basic knowledge in statistics, probability, regression analysis, and R programming. While I will cover some of the basic theories beyond the methods and approaches of time series, the focus of this book is more applied applications of time series and forecasting.</p>
+</section>
+<section id="roadmap" class="level2">
+<h2 class="anchored" data-anchor-id="roadmap">Roadmap</h2>
+<p>The book’s first version will cover the foundation of time series analysis, focusing on time series data and objects and descriptive methods for analyzing time series data. The following versions will include additional layers covering different forecasting approaches and other topics. Below are the book’s core milestones:</p>
+<ul>
+<li><code>V1</code> - Foundation of time series analysis</li>
+<li><code>V2</code> - Traditional time series forecasting methods (Smoothing methods, ARIMA, Linear Regression)</li>
+<li><code>V3</code> - Advanced regression methods (GLM, GAM, etc.)</li>
+<li><code>V4</code> - Bayesian forecasting approaches</li>
+<li><code>V5</code> - Machine and deep learning methods</li>
+<li><code>V6</code> - Scaling and production approaches</li>
+</ul>
+<p>More details are available on the book <a href="https://github.com/RamiKrispin/atsaf#table-of-contents">Github page</a>, and you can track the progress on the book’s <a href="https://github.com/users/RamiKrispin/projects/4">project page</a>.</p>
+</section>
+<section id="reproducability" class="level2">
+<h2 class="anchored" data-anchor-id="reproducability">Reproducability</h2>
+<p>The book development is done inside a dockerized environment to ensure a high level of reproducibility. The book’s development environment can be found on <a href="https://hub.docker.com/repository/docker/rkrispin/atsaf">Docker Hub</a>, and you can pull and run the image locally by using:</p>
+<pre><code>docker pull rkrispin/atsaf:dev.0.0.0.9000</code></pre>
+<p>The book website was created with <a href="https://quarto.org/">Quarto</a>, and the source code is available <a href="https://github.com/RamiKrispin/atsaf">here</a>.</p>
+</section>
+<section id="license" class="level2">
+<h2 class="anchored" data-anchor-id="license">License</h2>
+<p>This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a> License.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

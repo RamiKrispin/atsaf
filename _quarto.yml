@@ -3,9 +3,9 @@ project:
   output-dir: docs
 
 book:
-  title: "Applied Time Series Analysis with R"
+  title: "Applied Time Series Analysis and Forecasting with R"
   author: "Rami Krispin"
-  date: "9/27/2022"
+  date: "9/29/2022"
   chapters:
     - index.qmd
     - intro.qmd

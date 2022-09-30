@@ -1,3 +1,37 @@
 # Preface {.unnumbered}
 
-This is a placeholder.
+Welcome to the website of **Applied Time Series Analysis and forecasting with R**! This is an early "work in progress", and the book chapters will be added gradually in the coming months. Thank you for your patience.
+
+
+As its name implies, this book focuses on applied methods for handling and analyzing time series data and building forecasting models using R. That includes working with time series data and objects, using data visualization methods to explore the data, and using statistical methods to generate a forecast. In addition, we will spend some time on approaches for scaling and productionize your work by using fun examples. 
+
+## Audience
+
+This book assumes that you don't have any previous background in time series analysis and forecasting but have some basic knowledge in statistics, probability, regression analysis, and R programming. While I will cover some of the basic theories beyond the methods and approaches of time series, the focus of this book is more applied applications of time series and forecasting.
+
+## Roadmap
+
+The book's first version will cover the foundation of time series analysis, focusing on time series data and objects and descriptive methods for analyzing time series data. The following versions will include additional layers covering different forecasting approaches and other topics. Below are the book's core milestones:
+
+- `V1` - Foundation of time series analysis
+- `V2` - Traditional time series forecasting methods (Smoothing methods, ARIMA, Linear Regression)
+- `V3` - Advanced regression methods (GLM, GAM, etc.)
+- `V4` - Bayesian forecasting approaches
+- `V5` - Machine and deep learning methods
+- `V6` - Scaling and production approaches
+
+More details are available on the book [Github page](https://github.com/RamiKrispin/atsaf#table-of-contents), and you can track the progress on the book's [project page](https://github.com/users/RamiKrispin/projects/4).
+
+## Reproducability
+
+The book development is done inside a dockerized environment to ensure a high level of reproducibility. The book's development environment can be found on [Docker Hub](https://hub.docker.com/repository/docker/rkrispin/atsaf), and you can pull and run the image locally by using:
+
+```
+docker pull rkrispin/atsaf:dev.0.0.0.9000
+``` 
+
+The book website was created with [Quarto](https://quarto.org/), and the source code is available [here](https://github.com/RamiKrispin/atsaf).
+
+## License
+
+This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.
