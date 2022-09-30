@@ -158,7 +158,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Applied Time Series Analysis with R},
+  pdftitle={Applied Time Series Analysis and Forecasting with R},
   pdfauthor={Rami Krispin},
   colorlinks=true,
   linkcolor={blue},
@@ -167,13 +167,13 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Applied Time Series Analysis with R}
+\title{Applied Time Series Analysis and Forecasting with R}
 \author{Rami Krispin}
-\date{9/27/2022}
+\date{9/29/2022}
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced, interior hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, sharp corners, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -187,7 +187,87 @@
 \chapter*{Preface}\label{preface}}
 \addcontentsline{toc}{chapter}{Preface}
 
-This is a placeholder.
+Welcome to the website of \textbf{Applied Time Series Analysis and
+forecasting with R}! This is an early ``work in progress'', and the book
+chapters will be added gradually in the coming months. Thank you for
+your patience.
+
+As its name implies, this book focuses on applied methods for handling
+and analyzing time series data and building forecasting models using R.
+That includes working with time series data and objects, using data
+visualization methods to explore the data, and using statistical methods
+to generate a forecast. In addition, we will spend some time on
+approaches for scaling and productionize your work by using fun
+examples.
+
+\hypertarget{audience}{%
+\section*{Audience}\label{audience}}
+\addcontentsline{toc}{section}{Audience}
+
+This book assumes that you don't have any previous background in time
+series analysis and forecasting but have some basic knowledge in
+statistics, probability, regression analysis, and R programming. While I
+will cover some of the basic theories beyond the methods and approaches
+of time series, the focus of this book is more applied applications of
+time series and forecasting.
+
+\hypertarget{roadmap}{%
+\section*{Roadmap}\label{roadmap}}
+\addcontentsline{toc}{section}{Roadmap}
+
+The book's first version will cover the foundation of time series
+analysis, focusing on time series data and objects and descriptive
+methods for analyzing time series data. The following versions will
+include additional layers covering different forecasting approaches and
+other topics. Below are the book's core milestones:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{V1} - Foundation of time series analysis
+\item
+  \texttt{V2} - Traditional time series forecasting methods (Smoothing
+  methods, ARIMA, Linear Regression)
+\item
+  \texttt{V3} - Advanced regression methods (GLM, GAM, etc.)
+\item
+  \texttt{V4} - Bayesian forecasting approaches
+\item
+  \texttt{V5} - Machine and deep learning methods
+\item
+  \texttt{V6} - Scaling and production approaches
+\end{itemize}
+
+More details are available on the book
+\href{https://github.com/RamiKrispin/atsaf\#table-of-contents}{Github
+page}, and you can track the progress on the book's
+\href{https://github.com/users/RamiKrispin/projects/4}{project page}.
+
+\hypertarget{reproducability}{%
+\section*{Reproducability}\label{reproducability}}
+\addcontentsline{toc}{section}{Reproducability}
+
+The book development is done inside a dockerized environment to ensure a
+high level of reproducibility. The book's development environment can be
+found on
+\href{https://hub.docker.com/repository/docker/rkrispin/atsaf}{Docker
+Hub}, and you can pull and run the image locally by using:
+
+\begin{verbatim}
+docker pull rkrispin/atsaf:dev.0.0.0.9000
+\end{verbatim}
+
+The book website was created with \href{https://quarto.org/}{Quarto},
+and the source code is available
+\href{https://github.com/RamiKrispin/atsaf}{here}.
+
+\hypertarget{license}{%
+\section*{License}\label{license}}
+\addcontentsline{toc}{section}{License}
+
+This book is licensed under a
+\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative
+Commons Attribution-NonCommercial-ShareAlike 4.0 International} License.
 
 \bookmarksetup{startatroot}
 
