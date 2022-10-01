@@ -5,7 +5,7 @@ project:
 book:
   title: "Applied Time Series Analysis and Forecasting with R"
   author: "Rami Krispin"
-  date: "9/29/2022"
+  date: "October 01, 2022"
   chapters:
     - index.qmd
     - intro.qmd
