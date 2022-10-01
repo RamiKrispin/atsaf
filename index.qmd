@@ -34,11 +34,12 @@ docker pull rkrispin/atsaf:dev.0.0.0.9000
 
 ## Resources
 
-All the book source code can be found [here](https://github.com/RamiKrispin/atsaf), and get updates on the book's progress on Twitter and Telegram:
+All the book source code can be found [here](https://github.com/RamiKrispin/atsaf), and get updates on the book's progress on Twitter, Telegram channel, and Github project tracker:
 
 <p align="left">
 <a href="https://twitter.com/AppliedTSAF" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="ramikrispin" height="30" width="40" /></a>
-<a href="https://t.me/atsafr" target="blank"> <img align="center" src="images/Telegram_logo.png" width="31" /></a>
+<a href="https://t.me/atsafr" target="blank"> <img align="center" src="images/Telegram_logo.png" width="30" /></a>
+<a href="https://github.com/users/RamiKrispin/projects/4" target="blank"> <img align="center" src="images/Github_logo_black.png" width="30" /></a>
 
 The book website was created with [Quarto](https://quarto.org/).
 

@@ -173,7 +173,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, breakable, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -263,7 +263,8 @@ docker pull rkrispin/atsaf:dev.0.0.0.9000
 
 All the book source code can be found
 \href{https://github.com/RamiKrispin/atsaf}{here}, and get updates on
-the book's progress on Twitter and Telegram:
+the book's progress on Twitter, Telegram channel, and Github project
+tracker:
 
 The book website was created with \href{https://quarto.org/}{Quarto}.
 

@@ -6,6 +6,12 @@ As the name implies, the book focuses on applied data science methods for time s
 * Forecasting methods
 * Scaling and productionize approaches
 
+Get updates on the book’s progress on Twitter, Telegram channel, and Github project tracker:
+
+<p align="left">
+<a href="https://twitter.com/AppliedTSAF" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="ramikrispin" height="30" width="40" /></a>
+<a href="https://t.me/atsafr" target="blank"> <img align="center" src="images/Telegram_logo.png" width="30" /></a>
+<a href="https://github.com/users/RamiKrispin/projects/4" target="blank"> <img align="center" src="images/Github_logo_black.png" width="30" /></a>
 
 This repository hosts the book materials. It follows the [Monorepo](https://en.wikipedia.org/wiki/Monorepo) philosophy, hosting all the book's content, code, packages, and other supporting materials under one repository. In addition, to ensure a high level of reproducibility, the book is developed in a dockerized environment.
 
