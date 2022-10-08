@@ -16,10 +16,10 @@ CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize", "0", "--auth-n
 
 # Copy files
 RUN mkdir packages
+COPY install_dependencies.sh packages/
 COPY install_packages.R packages/
 COPY install_python.R packages/
 COPY packages.json packages/
-COPY install_dependencies.sh packages/
 
 # Install jq to parse json files
 RUN bash packages/install_dependencies.sh $QUARTO_VERSION
