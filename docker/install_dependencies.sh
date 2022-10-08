@@ -1,5 +1,4 @@
 #!/bin/bash
-mkdir packages
 
 # Install dependencies
 apt-get update && apt-get install -y --no-install-recommends \
@@ -19,6 +18,7 @@ apt-get update && apt-get install -y --no-install-recommends \
     libfontconfig1-dev \
     git \
     vim \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages

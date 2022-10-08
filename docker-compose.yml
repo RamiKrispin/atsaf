@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  rstudio:
+    image: "rkrispin/atsaf:dev.0.0.0.9000" 
+    ports:
+      - "8787:8787"
+    volumes:
+      - type: "bind"
+        source: "$ATSAF_DIR"
+        target: "/home/rstudio"
+      - type: "bind"
+        source: "$RSTUDIO_CONFIG_PATH"
+        target: "/home/rstudio/.config/rstudio"
+      - type: "bind"
+        source: "$HOME/.Renviron"
+        target: "/home/rstudio/.Renviron"
+    environment:
+      EIA_API_KEY: $EIA_API_KEY
