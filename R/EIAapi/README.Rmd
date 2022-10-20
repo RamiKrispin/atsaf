@@ -1,0 +1,52 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# EIAapi
+
+<!-- badges: start -->
+<!-- badges: end -->
+WIP - pre-spell check
+
+The EIAapi package provides function to query data from the [EIA API v2](https://www.eia.gov/opendata/). 
+
+## Requirments
+
+To pull data from the API using this package you will need:
+
+- jq - The package uses on the back-end [jq](https://stedolan.github.io/jq/) to parse 
+the API output from JSON to tabular format. To download and install jq follow the instructions on the [download page](https://stedolan.github.io/jq/download/).
+- API key - To query the EIA API, you will need to register to the service to receive API key.
+
+## Installation
+
+Currently, the package is under development and not available on CRAN. You can 
+install the experiment version from Github:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("RamiKrispin/tsafr/R/EIAapi")
+```
+
+## Query data 
+
+The following example demonstrate
+
+```{r}
+# Pulling the API key from my renviron file
+key <- Sys.getenv("eia_key")
+
+```
+
+
