@@ -1,1 +1,8 @@
 /.quarto/
+.Rproj.user
+.Renviron
+.config
+.local
+.DS_Store
+.bash_history
+.local/
