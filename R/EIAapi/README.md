@@ -11,22 +11,22 @@
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
-WIP - pre-testing and spell checks
+WIP - pre-testing.
 
-The **EIAapi** package provides function to query data from the [EIA API
-v2](https://www.eia.gov/opendata/).
+The **EIAapi** package provides a function to query data from the [EIA
+API v2](https://www.eia.gov/opendata/).
 
 ## Requirments
 
-To pull data from the API using this package you will need:
+To pull data from the API using this package, you will need the
+following:
 
--   jq - The package uses on the back-end
-    [jq](https://stedolan.github.io/jq/) to parse the API output from
-    JSON to tabular format. To download and install jq follow the
-    instructions on the [download
+-   jq - The package uses [jq](https://stedolan.github.io/jq/) to parse
+    the API output from JSON to tabular format. To download and install
+    jq follow the instructions on the [download
     page](https://stedolan.github.io/jq/download/).
 -   API key - To query the EIA API, you will need to register to the
-    service to receive API key.
+    service to receive the API key.
 
 ## Installation
 
@@ -80,7 +80,7 @@ In the example above:
 }
 ```
 
-Using the URL and header information we can submit the GET request with
+Using the URL and header information, we can submit the GET request with
 the `eia_get` function:
 
 ``` r
@@ -115,11 +115,11 @@ head(df1)
 #> 6     Nuclear  2001 megawatthours
 ```
 
-The `eia_get` function leveraging the
+The `eia_get` function leverages the
 [jq](https://stedolan.github.io/jq/) tool to parse the return JSON
-object from the API into CSV format, and the
+object from the API into CSV format and the
 [data.table](https://cran.r-project.org/web/packages/data.table/)
-package to read the parse object into R. By default, the function
+package to read and parse the object into R. By default, the function
 returns a `data.frame` object, but you can use the `format` argument and
 set the output object as `data.table`:
 
@@ -158,7 +158,7 @@ df2
 #> 5000:   Petroleum     0 megawatthours
 ```
 
-If you wish to pull more than `length` upper limit, you can use the
+If you wish to pull more than the `length` upper limit, you can use the
 `offset` to offset the query by limit and pull the next observations:
 
 ``` r
@@ -198,10 +198,11 @@ df3
 #> 5000:      OIL   Petroleum     0 megawatthours
 ```
 
-You can narrow down your pull by using the `facets` argument and apply
-some filters. For example, in the example above, let’s filter data by
-the `fuletype` field and select energy source as `Natural gas (NG)` and
-region as `United States Lower 48 (US48)`, and then extract the header:
+You can narrow down your pull by using the `facets` argument and
+applying some filters. For example, in the example above, let’s filter
+data by the `fuletype` field and select energy source as
+`Natural gas (NG)` and the region as `United States Lower 48 (US48)`,
+and then extract the header:
 
 ``` json
 {
@@ -278,7 +279,7 @@ unique(df4$respondent)
 ```
 
 Last but not least, you can set the starting and ending time of the
-query. For example, let’s set a window between June 1st and October 1st
+query. For example, let’s set a window between June 1st and October 1st,
 2022:
 
 ``` r
