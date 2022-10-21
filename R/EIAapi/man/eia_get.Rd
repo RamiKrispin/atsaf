@@ -7,7 +7,7 @@
 eia_get(
   api_key,
   api_url,
-  metric = "value",
+  data = "value",
   facets = NULL,
   start = NULL,
   end = NULL,
@@ -22,7 +22,7 @@ eia_get(
 
 \item{api_url}{A string, the API URL, can be found on the EIA API dashboard, for more details see https://www.eia.gov/opendata/browser/}
 
-\item{metric}{A string, the metric type, by default uses 'value' (defined as
+\item{data}{A string, the metric type, by default uses 'value' (defined as
 'data' on the API header)}
 
 \item{facets}{A list, optional, set the filtering argument (defined as 'facets'

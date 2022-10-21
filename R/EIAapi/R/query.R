@@ -2,7 +2,7 @@
 #' @description Function to query and extract data from the EIA API v2
 #' @param api_key A string, EIA API key, see https://www.eia.gov/opendata/ for registration to the API service
 #' @param api_url A string, the API URL, can be found on the EIA API dashboard, for more details see https://www.eia.gov/opendata/browser/
-#' @param metric A string, the metric type, by default uses 'value' (defined as
+#' @param data A string, the metric type, by default uses 'value' (defined as
 #' 'data' on the API header)
 #' @param facets A list, optional, set the filtering argument (defined as 'facets'
 #' on the API header), following the structure of list(facet_name_1 = value_1,
@@ -29,7 +29,7 @@
 
 eia_get <- function(api_key,
                     api_url,
-                    metric = "value",
+                    data = "value",
                     facets = NULL,
                     start = NULL,
                     end = NULL,
@@ -50,8 +50,8 @@ eia_get <- function(api_key,
     stop(paste("🛑 The api_url argument is not valid, must be a character object\n",
                "Please check the API Dashboard for the API URL:\n",
                "➡️ https://www.eia.gov/opendata/browser/", sep = ""))
-  } else if(missing(metric) && !is.character(metric)){
-    stop("🛑 The metric argument is either missing or not valid...")
+  } else if(missing(data) && !is.character(data)){
+    stop("🛑 The data argument is either missing or not valid...")
   } else if(missing(facets) && !is.list(facets) && !is.null(facets)){
     stop("🛑 The facets argument is either missing or not valid...")
   } else if(!is.null(start) && !is.character(start)){
@@ -78,8 +78,8 @@ eia_get <- function(api_key,
                "Must be either 'data.frame' or 'data.table'\n", sep = ""))
   }
 
-  if(substr(url, start = nchar(url), stop = nchar(url)) == "/"){
-    url <- substr(url, start = 1, stop = nchar(url) - 1)
+    if(substr(api_url, start = nchar(api_url), stop = nchar(api_url)) == "/"){
+      api_url <- substr(api_url, start = 1, stop = nchar(api_url) - 1)
   }
 
   if(is.null(start)){
@@ -94,8 +94,8 @@ eia_get <- function(api_key,
     e <- paste("&end=", end, sep = "")
   }
 
+  f <- ""
   if(!is.null(facets)){
-    f <- ""
     for(i in names(facets)){
       f <- paste(f,
                  sprintf("&facets[%s][]=%s", i, facets[[i]]),
@@ -123,11 +123,11 @@ eia_get <- function(api_key,
 
   query <- NULL
   query <- paste("curl '",
-                 url,
+                 api_url,
                  "?api_key=",
                  api_key,
                  "&data[]=",
-                 metric,
+                 data,
                  s, e, f, l, o, q,
                  "' | jq -r ' .response.data | ( .[0] | keys_unsorted | map(ascii_upcase)), (.[] | [.[]]) | @csv'",
                  sep = ""
