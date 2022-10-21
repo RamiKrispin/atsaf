@@ -19,7 +19,10 @@ knitr::opts_chunk$set(
 # EIAapi
 
 <!-- badges: start -->
-
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/EIAapu)](https://cran.r-project.org/package=EIAapi)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
 
 WIP - pre-testing and spell checks
@@ -97,32 +100,35 @@ library(EIAapi)
 # Pulling the API key from my renviron file
 api_key <- Sys.getenv("eia_key")
 
-df <- eia_get(
+df1 <- eia_get(
   api_key = api_key,
   api_url = "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/",
   data = "value"
 )
 
-nrow(df)
+nrow(df1)
 
-head(df)
+head(df1)
 ```
 
 The `eia_get` function leveraging the [jq](https://stedolan.github.io/jq/) tool to parse the return JSON object from the API into CSV format, and the [data.table](https://cran.r-project.org/web/packages/data.table/) package to read the parse object into R. By default, the function returns a `data.frame` object, but you can use the `format` argument and set the output object as `data.table`:
 
 ```{r}
-df <- eia_get(
+df2 <- eia_get(
   api_key = api_key,
   api_url = "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/",
   data = "value",
   format = "data.table"
 )
 
-df
+df2
 ```
 
+If you wish to pull more than `length` upper limit, you can use the `offset` to offset the query by limit and pull the next observations:
+
+
 ```{r}
-df <- eia_get(
+df3 <- eia_get(
   api_key = api_key,
   api_url = "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/",
   data = "value",
@@ -131,5 +137,92 @@ df <- eia_get(
   format = "data.table"
 )
 
-df
+df3
 ```
+
+You can narrow down your pull by using the `facets` argument and apply some filters. For example, in the example above, let's filter data by the `fuletype` field and select energy source as `Natural gas (NG)` and region as `United States Lower 48 (US48)`, and then extract the header:
+
+``` JSON
+{
+    "frequency": "hourly",
+    "data": [
+        "value"
+    ],
+    "facets": {
+        "respondent": [
+            "US48"
+        ],
+        "fueltype": [
+            "NG"
+        ]
+    },
+    "start": null,
+    "end": null,
+    "sort": [
+        {
+            "column": "period",
+            "direction": "desc"
+        }
+    ],
+    "offset": 0,
+    "length": 5000,
+    "api-version": "2.0.3"
+}
+```
+
+Updating the query with the `facets` information:
+
+```{r}
+facets <- list(respondent = "US48", fueltype = "NG")
+
+df4 <- eia_get(
+  api_key = api_key,
+  api_url = "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/",
+  data = "value",
+  length = 5000,
+  format = "data.table",
+  facets = facets
+)
+
+df4
+
+unique(df4$fueltype)
+unique(df4$respondent)
+```
+
+
+Last but not least, you can set the starting and ending time of the query. For example, let's set a window between June 1st and October 1st 2022:
+
+
+```{r}
+df5 <- eia_get(
+  api_key = api_key,
+  api_url = "https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/",
+  data = "value",
+  length = 5000,
+  format = "data.table",
+  facets = facets,
+  start = "2022-06-01T00",
+  end = "2022-10-01T00"
+)
+
+df5
+
+df5$time <- as.POSIXct(paste(substr(df5$period, start = 1, stop = 10)," ", 
+                       substr(df5$period, start = 12, stop = 13), ":00:00", 
+                       sep = ""))
+
+plot(x = df5$time, y = df5$value, 
+     main = "United States Lower 48 Hourly Electricity Generation by Natural Gas",
+     col.main = "#457b9d",
+     col = "#073b4c",
+     sub = "Source: Form EIA-930 Product: Hourly Electric Grid Monitor",
+     xlab = "",
+     ylab = "Megawatt Hours",
+     cex.main=1, 
+     cex.lab=1, 
+     cex.sub=0.8,
+     frame=FALSE,
+     type = "l")
+```
+
