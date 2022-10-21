@@ -153,5 +153,7 @@ eia_get <- function(api_key,
     df <- as.data.frame(df)
   }
 
+  names(df) <- tolower(names(df))
+
   return(df)
 }
