@@ -1,25 +1,9 @@
----
-output: github_document
-editor_options: 
-  markdown: 
-    wrap: 72
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 
 # EIAapi
 
 <!-- badges: start -->
-
 <!-- badges: end -->
 
 WIP - pre-testing and spell checks
@@ -65,11 +49,13 @@ function:
 
 [![](man/images/EIA_API_browser.png)](https://www.eia.gov/opendata/browser/)
 
-In the example above: 
+In the example above:
 
-- The API URL: https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/
-- Query header: 
-```JSON
+-   The API URL:
+    <https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/>
+-   Query header:
+
+``` json
 {
     "frequency": "hourly",
     "data": [
@@ -90,9 +76,10 @@ In the example above:
 }
 ```
 
-Using the URL and header information we can submit the GET request with the `eia_get` function:
+Using the URL and header information we can submit the GET request with
+the `eia_get` function:
 
-```{r}
+``` r
 # Pulling the API key from my renviron file
 # api_key <- Sys.getenv("eia_key")
 # 
