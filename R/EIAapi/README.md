@@ -115,6 +115,20 @@ head(df1)
 #> 6     Nuclear  2001 megawatthours
 ```
 
+A clean format of the query is available on the object attribute:
+
+``` r
+cat(attributes(df1)$query)
+#> https://api.eia.gov/v2/electricity/rto/fuel-type-data/data?api_key=XXXXX&data[]=value
+```
+
+You can use this query to view the return `JSON` on your browser:
+
+[![](man/images/EIA_JSON.png)](https://api.eia.gov/v2/electricity/rto/fuel-type-data/data?api_key=XXXXX&data%5B%5D=value)
+
+**Note:** The api key is masked by `XXXXX`, you will have to replace it
+with your key.
+
 The `eia_get` function leverages the
 [jq](https://stedolan.github.io/jq/) tool to parse the return JSON
 object from the API into CSV format and the
@@ -338,4 +352,4 @@ plot(x = df5$time, y = df5$value,
      type = "l")
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />

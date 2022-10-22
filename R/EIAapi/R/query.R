@@ -133,6 +133,14 @@ eia_get <- function(api_key,
                  sep = ""
   )
 
+  query_no_key <- NULL
+  query_no_key <- paste(api_url,
+                 "?api_key=XXXXX",
+                 "&data[]=",
+                 data,
+                 s, e, f, l, o, q,
+                 sep = ""
+  )
 
   df <- NULL
 
@@ -154,6 +162,6 @@ eia_get <- function(api_key,
   }
 
   names(df) <- tolower(names(df))
-
+  attr(df,"query") <- query_no_key
   return(df)
 }
