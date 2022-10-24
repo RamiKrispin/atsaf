@@ -1,2 +1,5 @@
 /.quarto/
 .Rproj.user
+.Renviron
+.bash_history
+.local/
