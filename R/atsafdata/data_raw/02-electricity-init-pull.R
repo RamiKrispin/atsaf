@@ -27,7 +27,11 @@ elec_metadata <- sub_map %>%
   dplyr::filter(!(parent == "MISO" & subba %in% c("1", "27", "35", "4", "6"))) %>%
   dplyr::mutate(start_time = ifelse(parent == "CISO" & subba == "PGAE", "2018-07-01T00", start_time))
 
-elec_df <- data.frame(time = lubridate::POSIXct(),
+attr(elec_metadata, "type") <- "metadata"
+attr(elec_metadata, "job") <- "backfill"
+attr(elec_metadata, "data") <- "US subregion hourly electricity demand by balancing authority subregion"
+
+us_subregion <- data.frame(time = lubridate::POSIXct(),
                       balancing_authority = character(),
                       subregion = character(),
                       value = integer())
@@ -109,7 +113,7 @@ for(i in 1:nrow(elec_metadata)){
     elec_metadata$start[i] <- min(df$time)
     elec_metadata$end[i] <- max(df$time)
 
-    elec_df <- dplyr::bind_rows(elec_df, df)
+    us_subregion <- dplyr::bind_rows(us_subregion, df)
 
     time_diff <- diff(df$time)
     if(min(time_diff) != 1 || max(time_diff) != 1){
@@ -126,3 +130,21 @@ for(i in 1:nrow(elec_metadata)){
 
 }
 
+attr(us_subregion, "type") <- "Electricity"
+attr(us_subregion, "description") <- "Hourly demand by sub-region"
+attr(us_subregion, "source") <- "EIA API, form EIA-930 Product: Hourly Electric Grid Monitor"
+attr(us_subregion, "api") <- "https://api.eia.gov/v2/electricity/rto/region-sub-ba-data/data/"
+attr(us_subregion, "url") <- "https://www.eia.gov/opendata/browser/electricity/rto/region-sub-ba-data"
+attr(us_subregion, "sub-regions") <- unique(us_subregion$subregion)
+attr(us_subregion, "balancing authority") <- unique(us_subregion$balancing_authority)
+attr(us_subregion, "units") <- c("megawatthours")
+attr(us_subregion, "frequency") <- "hourly"
+
+usethis::use_data(us_subregion, overwrite = FALSE)
+
+# TODO
+# Reformat the time object
+# Test irregular time series
+
+
+saveRDS(elec_metadata, file = "./data_raw/sub_region_metadata.rds")
