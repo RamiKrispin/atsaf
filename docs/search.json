@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Applied Time Series Analysis and Forecasting with R",
+    "section": "",
+    "text": "Welcome to the website of Applied Time Series Analysis and forecasting with R! This is an early “work in progress”, and the book chapters will be added gradually in the coming months. Thank you for your patience.\nAs its name implies, this book focuses on applied methods for handling and analyzing time series data and building forecasting models using R. That includes working with time series data and objects, using data visualization methods to explore the data, and using statistical methods to generate a forecast. In addition, we will spend some time on approaches for scaling and productionize your work by using fun examples.\n\n\nThis book assumes that you don’t have any previous background in time series analysis and forecasting but have some basic knowledge in statistics, probability, regression analysis, and R programming. While I will cover some of the basic theories beyond the methods and approaches of time series, the focus of this book is more applied applications of time series and forecasting.\n\n\n\nThe book’s first version will cover the foundation of time series analysis, focusing on time series data and objects and descriptive methods for analyzing time series data. The following versions will include additional layers covering different forecasting approaches and other topics. Below are the book’s core milestones:\n\nV1 - Foundation of time series analysis\nV2 - Traditional time series forecasting methods (Smoothing methods, ARIMA, Linear Regression)\nV3 - Advanced regression methods (GLM, GAM, etc.)\nV4 - Bayesian forecasting approaches\nV5 - Machine and deep learning methods\nV6 - Scaling and production approaches\n\nMore details are available on the book Github page, and you can track the progress on the book’s project page.\n\n\n\nThe book development is done inside a dockerized environment to ensure a high level of reproducibility. The book’s development environment can be found on Docker Hub, and you can pull and run the image locally by using:\ndocker pull rkrispin/atsaf:dev.0.0.0.9000\n\n\n\nAll the book source code can be found here, and get updates on the book’s progress on Twitter, Telegram channel, and Github project tracker:\n\n    \nThe book website was created with Quarto.\n\n\n\nThis book is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License."
+  },
+  {
+    "objectID": "prerequisites.html",
+    "href": "prerequisites.html",
+    "title": "2  Prerequisites",
+    "section": "",
+    "text": "Prerequisites chapter - placeholder."
+  }
+]
