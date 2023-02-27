@@ -11,7 +11,6 @@ sub_map <- readRDS(file = "./data_raw/sub_region_mapping.rds")
 
 
 # Setting init pull
-start_time <- "2018-06-19T00"
 length <- 5000
 offset <- 5000
 
@@ -21,6 +20,7 @@ elec_metadata <- sub_map %>%
                 start = NA,
                 end = NA,
                 regular = NA,
+                missing_values = NA,
                 success = NA,
                 failure_type = NA,
                 start_time = "2018-06-19T00") %>%
@@ -32,9 +32,9 @@ attr(elec_metadata, "job") <- "backfill"
 attr(elec_metadata, "data") <- "US subregion hourly electricity demand by balancing authority subregion"
 
 us_subregion <- data.frame(time = lubridate::POSIXct(),
-                      balancing_authority = character(),
-                      subregion = character(),
-                      value = integer())
+                           balancing_authority = character(),
+                           subregion = character(),
+                           value = integer())
 
 for(i in 1:nrow(elec_metadata)){
 
@@ -109,17 +109,28 @@ for(i in 1:nrow(elec_metadata)){
       ) %>%
       dplyr::arrange(time)
 
+
     elec_metadata$nrows[i] <- nrow(df)
     elec_metadata$start[i] <- min(df$time)
     elec_metadata$end[i] <- max(df$time)
 
-    us_subregion <- dplyr::bind_rows(us_subregion, df)
+
 
     time_diff <- diff(df$time)
     if(min(time_diff) != 1 || max(time_diff) != 1){
       elec_metadata$regular[i] <- FALSE
+      temp <- NULL
+      temp <- data.frame(time = seq.POSIXt(from = min(df$time),
+                                           to = max(df$time),
+                                           by = "hour")) %>%
+        dplyr::mutate(balancing_authority = parent,
+                      subregion = subba) %>%
+        dplyr::left_join(df,by = c("time", "balancing_authority", "subregion"))
+      us_subregion <- dplyr::bind_rows(us_subregion, temp)
+      elec_metadata$missing_values[i] <- length(which(is.na(temp$value)))
     } else {
       elec_metadata$regular[i] <- TRUE
+      us_subregion <- dplyr::bind_rows(us_subregion, df)
     }
   } else if(fail){
     df <- data.frame(time = NA,
@@ -140,11 +151,10 @@ attr(us_subregion, "balancing authority") <- unique(us_subregion$balancing_autho
 attr(us_subregion, "units") <- c("megawatthours")
 attr(us_subregion, "frequency") <- "hourly"
 
-usethis::use_data(us_subregion, overwrite = FALSE)
+usethis::use_data(us_subregion, overwrite = TRUE)
 
-# TODO
-# Reformat the time object
-# Test irregular time series
 
+elec_metadata$start <-  as.POSIXct(elec_metadata$start, origin = '1970-01-01 00:00:00 UTC')
+elec_metadata$end <-  as.POSIXct(elec_metadata$end, origin = '1970-01-01 00:00:00 UTC')
 
 saveRDS(elec_metadata, file = "./data_raw/sub_region_metadata.rds")
