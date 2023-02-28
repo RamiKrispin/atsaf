@@ -14,3 +14,5 @@ LazyData: true
 RoxygenNote: 7.2.1
 Suggests:
   data.table (>= 1.14.2)
+SystemRequirements: 
+  jq
