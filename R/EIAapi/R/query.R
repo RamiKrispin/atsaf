@@ -39,43 +39,43 @@ eia_get <- function(api_key,
                     format = "data.frame"){
   # Error handling
   if(missing(api_key)){
-    stop("🛑 The api_key argument is missing...")
+    stop("The api_key argument is missing... \033[0;92m\xE2\x9D\x8C\033[0m\n")
   } else if(!is.character(api_key)){
-    stop("🛑 The api_key argument is not valid...")
+    stop("The api_key argument is not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n")
   } else if(missing(api_url)){
-    stop(paste("🛑 The api_url argument is missing...\n",
+    stop(paste("The api_url argument is missing... \033[0;92m\xE2\x9D\x8C\033[0m\n",
                "Please check the API Dashboard for the API URL:\n",
-               "➡️ https://www.eia.gov/opendata/browser/", sep = ""))
+               "https://www.eia.gov/opendata/browser/", sep = ""))
   } else if(!is.character(api_url)){
-    stop(paste("🛑 The api_url argument is not valid, must be a character object\n",
+    stop(paste("The api_url argument is not valid, must be a character object \033[0;92m\xE2\x9D\x8C\033[0m\n",
                "Please check the API Dashboard for the API URL:\n",
-               "➡️ https://www.eia.gov/opendata/browser/", sep = ""))
+               "https://www.eia.gov/opendata/browser/", sep = ""))
   } else if(missing(data) && !is.character(data)){
-    stop("🛑 The data argument is either missing or not valid...")
+    stop("The data argument is either missing or not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n")
   } else if(missing(facets) && !is.list(facets) && !is.null(facets)){
-    stop("🛑 The facets argument is either missing or not valid...")
+    stop("The facets argument is either missing or not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n")
   } else if(!is.null(start) && !is.character(start)){
-    stop(paste("🛑 The start argument is not valid...\n",
+    stop(paste("The start argument is not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n",
                "Please use a character using the following format:\n",
                "Date: 'YYYY-MM-DD', for example start='2022-01-01'\n",
                "Time (Hourly): 'YYYY-MM-DDTHH', for example start='2022-01-01T01'\n",sep = ""))
   } else if(!is.null(end) && !is.character(end)){
-    stop(paste("🛑 The end argument is not valid...\n",
+    stop(paste("The end argument is not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n",
                "Please use a character using the following format:\n",
                "Date: 'YYYY-MM-DD', for example end='2022-01-01'\n",
                "Time (Hourly): 'YYYY-MM-DDTHH', for example end='2022-01-01T01'\n",sep = ""))
   } else if(!is.null(length) && !is.numeric(length) && length %% 1 != 0){
-    stop(paste("🛑 The length argument is not valid:\n",
-               "Must be an integer number\n", sep = ""))
+    stop(paste("The length argument is not valid: \033[0;92m\xE2\x9D\x8C\033[0m\n",
+               "Must be an integer number", sep = ""))
   } else if(!is.null(offset) && !is.numeric(offset) && offset %% 1 != 0){
-    stop(paste("🛑 The offset argument is not valid:\n",
-               "Must be an integer number\n", sep = ""))
+    stop(paste("The offset argument is not valid:\n",
+               "Must be an integer number \033[0;92m\xE2\x9D\x8C\033[0m\n", sep = ""))
   } else if(!is.null(frequency) && !is.character(frequency)){
-    stop(paste("🛑 The frequency argument is not valid:\n",
-               "Must be a character object\n", sep = ""))
+    stop(paste("The frequency argument is not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n",
+               "Must be a character object", sep = ""))
   } else if(format != "data.table" && format != "data.frame"){
-    stop(paste("🛑 The format argument is not valid:\n",
-               "Must be either 'data.frame' or 'data.table'\n", sep = ""))
+    stop(paste("The format argument is not valid... \033[0;92m\xE2\x9D\x8C\033[0m\n",
+               "Must be either 'data.frame' or 'data.table'", sep = ""))
   }
 
     if(substr(api_url, start = nchar(api_url), stop = nchar(api_url)) == "/"){
@@ -146,7 +146,7 @@ eia_get <- function(api_key,
 
 
   if(is.null(df)){
-    stop(paste("🛑 Could not pull the data:\n",
+    stop(paste("Could not pull the data... \033[0;92m\xE2\x9D\x8C\033[0m\n",
                "Check the query parameters (e.g., api key, url, etc.)\n", sep = ""))
   }
   if(format == "data.frame"){
