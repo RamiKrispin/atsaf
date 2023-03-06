@@ -1,0 +1,38 @@
+#' New York Independent System Operator Hourly Demand by Sub-Region
+#'
+#'
+#' @format A data frame with 3 variables.
+#' \describe{
+#'   \item{time}{Time in YYYY-MM-DD HH:MM:SS format (POSIXct class).}
+#'   \item{subregion}{The sub region code}
+#'   \item{subregion_name}{The sub region full name}
+#'   \item{value}{The sub region hourly demand in megawatthours}
+#'   }
+#' @source EIA API, form EIA-930 Product: Hourly Electric Grid Monitor \href{https://www.eia.gov/opendata/browser/electricity/rto/region-sub-ba-data}{website}.
+#' @keywords datasets NY electricity demand
+#' @details The dataset contains 11 regular time series, representing the
+#' hourly demand for electricity in the New York Independent System Operator by
+#' sub-region.
+#' Units: Megawatthours
+#'
+#' Time zone: UTC
+#' @examples
+#' library(plotly)
+#'
+#' data("nyis")
+#'
+#' head(nyis)
+#' unique(nyis$subregion)
+#'
+#'
+#' plot_ly(data = nyis,
+#'         x = ~ time,
+#'         y = ~ value,
+#'         color = ~ subregion_name,
+#'         type = "scatter",
+#'         mode = "line") |>
+#'   layout(title = "New York Independent System Operator Hourly Demand by Sub-Region",
+#'          yaxis = list(title = "Megawatthours"),
+#'          xaxis = list(title = ""))
+
+"nyis"
