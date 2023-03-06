@@ -3,53 +3,81 @@
 
 # atsafdata
 
+⚠️WIP⚠️
+
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of atsafdata is to …
+The **atsafdata** package provides examples of regular time series for
+the book [Applied Time Series Analysis and Forecasting with
+R](https://github.com/RamiKrispin/atsaf). That includes the following
+series:
+
+-   `nyis` - The New York Independent System Operator hourly demand by
+    sub-region (11 series)
+-   `sfo` - ⚠️WIP⚠️ Summary statistics of the monthly passengers and
+    landing in San Francisco International Airport (SFO)
+-   `usgas` - ⚠️WIP⚠️ The monthly demand for natural gas in the US
 
 ## Installation
 
-You can install the development version of atsafdata from
-[GitHub](https://github.com/) with:
+Currently the package is not available on CRAN, and you can be install
+the development version of atsafdata from
+[GitHub](https://github.com/RamiKrispin/atsaf/R/atsafdata):
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("RamiKrispin/tsafr")
+devtools::install_github("https://github.com/RamiKrispin/atsaf/R/atsafdata")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
+The `nyis` dataset contains 11 regular time series, representing the
+hourly demand for electricity by the New York Independent System
+Operator (NYIS) balancing authority. Each series represents the demand
+in a sub-region of the NYIS balancing authority. Let’s load and plot the
+data:
 
 ``` r
 library(atsafdata)
-## basic example code
+
+data(nyis)
+
+head(nyis)
+#>                  time subregion subregion_name value
+#> 1 2018-06-19 05:00:00      ZOND          North   443
+#> 2 2018-06-19 06:00:00      ZOND          North   443
+#> 3 2018-06-19 07:00:00      ZOND          North   455
+#> 4 2018-06-19 08:00:00      ZOND          North   452
+#> 5 2018-06-19 09:00:00      ZOND          North   455
+#> 6 2018-06-19 10:00:00      ZOND          North   434
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+The `subregiong` and `subregion_name` fields represent the sub-region
+code and name, respectively:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+unique(nyis$subregion_name)
+#>  [1] "North"         "New York City" "Mohawk Valley" "Genesee"      
+#>  [5] "Capital"       "Central"       "West"          "Millwood"     
+#>  [9] "Hudson Valley" "Dunwoodie"     "Long Island"
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+Plotting the hourly demand for electricyt by sub-region using plotly:
 
-You can also embed plots, for example:
+``` r
+library(plotly)
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+plot_ly(data = nyis,
+        x = ~ time,
+        y = ~ value,
+        color = ~ subregion_name,
+        type = "scatter",
+        mode = "line") |>
+  layout(title = "New York Independent System Operator Hourly Demand by Sub-Region",
+         yaxis = list(title = "Megawatthours"),
+         xaxis = list(title = "Source: EIA API, form EIA-930 Product: Hourly Electric Grid Monitor"), 
+         margin = list(l = 50, r = 50, b = 60, t = 60, pad = 4))
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/nyis.png" width="100%" />
