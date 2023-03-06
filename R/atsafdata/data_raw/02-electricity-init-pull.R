@@ -1,7 +1,7 @@
-# Pulling sub region data
+# Pulling NYIS sub region data
 # Loading data mapping ----
 sub_map <- readRDS(file = "./data_raw/sub_region_mapping.rds")
-`%>%` <- magrittr::`%>%`
+
 # sub-regions to exclude
 # MISO - 1
 # MISO - 27
@@ -10,12 +10,19 @@ sub_map <- readRDS(file = "./data_raw/sub_region_mapping.rds")
 # MISO - 6
 
 
+# Number of series by balancing authority
+# CISO 4
+# ERCO 8
+# ISNE 8
+# NYIS 11
+# PNM 8
+
 # Setting init pull
 length <- 5000
 offset <- 5000
 
 
-elec_metadata <- sub_map %>%
+nyis_metadata <- sub_map |>
   dplyr::mutate(nrows = NA,
                 start = NA,
                 end = NA,
@@ -23,29 +30,30 @@ elec_metadata <- sub_map %>%
                 missing_values = NA,
                 success = NA,
                 failure_type = NA,
-                start_time = "2018-06-19T00") %>%
-  dplyr::filter(!(parent == "MISO" & subba %in% c("1", "27", "35", "4", "6"))) %>%
+                start_time = "2018-06-19T00") |>
+  dplyr::filter(!(parent == "MISO" & subba %in% c("1", "27", "35", "4", "6"))) |>
   dplyr::mutate(start_time = ifelse(parent == "CISO" & subba == "PGAE", "2018-07-01T00", start_time))
 
-attr(elec_metadata, "type") <- "metadata"
-attr(elec_metadata, "job") <- "backfill"
-attr(elec_metadata, "data") <- "US subregion hourly electricity demand by balancing authority subregion"
+attr(nyis_metadata, "type") <- "metadata"
+attr(nyis_metadata, "job") <- "backfill"
+attr(nyis_metadata, "data") <- "US subregion hourly electricity demand by balancing authority subregion"
 
-us_subregion <- data.frame(time = lubridate::POSIXct(),
-                           balancing_authority = character(),
-                           subregion = character(),
-                           value = integer())
+nyis <- data.frame(time = lubridate::POSIXct(),
+                   subregion = character(),
+                   subregion_name = character(),
+                   value = integer())
 
-for(i in 1:nrow(elec_metadata)){
+for(i in 1:nrow(nyis_metadata)){
 
   df <- subba <- parent <- time_diff <- NULL
   fail <- FALSE
-  parent <- elec_metadata$parent[i]
-  subba <- elec_metadata$subba[i]
+  parent <- nyis_metadata$parent[i]
+  subba <- nyis_metadata$subba[i]
+  subba_name <- nyis_metadata$subba_name[i]
   cat("Balancing Authority:", parent, "\n", sep = " ")
   cat("Sub-region:", subba, "\n", sep = " ")
   cat("Index:", i, "\n", sep = " ")
-  start_time <- elec_metadata$start_time[i]
+  start_time <- nyis_metadata$start_time[i]
   iterations <- 15
   c <- 1
 
@@ -71,8 +79,8 @@ for(i in 1:nrow(elec_metadata)){
               "and sub-region",
               subba)
       fail <- TRUE
-      elec_metadata$success[i] <- FALSE
-      elec_metadata$failure_type[i] <- "query"
+      nyis_metadata$success[i] <- FALSE
+      nyis_metadata$failure_type[i] <- "query"
       c <- iterations
     }
 
@@ -80,11 +88,11 @@ for(i in 1:nrow(elec_metadata)){
       if(c == iterations - 1 && nrow(temp) == length){
         stop("Number of iterations is not sufficent...")
         fail <- TRUE
-        elec_metadata$success[i] <- FALSE
-        elec_metadata$failure_type[i] <- "iterations"
+        nyis_metadata$success[i] <- FALSE
+        nyis_metadata$failure_type[i] <- "iterations"
       } else if(nrow(temp) < length){
         c <- iterations
-        elec_metadata$success[i] <- TRUE
+        nyis_metadata$success[i] <- TRUE
       } else {
         c <- c + 1
       }
@@ -100,61 +108,64 @@ for(i in 1:nrow(elec_metadata)){
 
   if(!fail){
 
-    df <- df %>%
-      dplyr::mutate(time = lubridate::ymd_h(period, tz = "UTC")) %>%
+    df <- df |>
+      dplyr::mutate(time = lubridate::ymd_h(period, tz = "UTC")) |>
       dplyr::select(time,
-                    balancing_authority = parent,
-                    subregion = subba, value) %>%
+                    subregion = subba,
+                    subregion_name = `subba-name`,
+                    value) |>
       dplyr::mutate(subregion = as.character(subregion),
-      ) %>%
+      ) |>
       dplyr::arrange(time)
 
 
-    elec_metadata$nrows[i] <- nrow(df)
-    elec_metadata$start[i] <- min(df$time)
-    elec_metadata$end[i] <- max(df$time)
+    nyis_metadata$nrows[i] <- nrow(df)
+    nyis_metadata$start[i] <- min(df$time)
+    nyis_metadata$end[i] <- max(df$time)
 
 
 
     time_diff <- diff(df$time)
     if(min(time_diff) != 1 || max(time_diff) != 1){
-      elec_metadata$regular[i] <- FALSE
+      nyis_metadata$regular[i] <- FALSE
       temp <- NULL
       temp <- data.frame(time = seq.POSIXt(from = min(df$time),
                                            to = max(df$time),
-                                           by = "hour")) %>%
-        dplyr::mutate(balancing_authority = parent,
-                      subregion = subba) %>%
-        dplyr::left_join(df,by = c("time", "balancing_authority", "subregion"))
-      us_subregion <- dplyr::bind_rows(us_subregion, temp)
-      elec_metadata$missing_values[i] <- length(which(is.na(temp$value)))
+                                           by = "hour")) |>
+        dplyr::mutate(subregion = subba,
+                      subregion_name = subba_name) |>
+        dplyr::left_join(df,by = c("time","subregion"))
+      nyis <- dplyr::bind_rows(nyis, temp)
+      nyis_metadata$missing_values[i] <- length(which(is.na(temp$value)))
     } else {
-      elec_metadata$regular[i] <- TRUE
-      us_subregion <- dplyr::bind_rows(us_subregion, df)
+      nyis_metadata$regular[i] <- TRUE
+      nyis <- dplyr::bind_rows(nyis, df)
     }
   } else if(fail){
     df <- data.frame(time = NA,
                      balancing_authority = parent,
                      subregion = subba,
+                     subregion_name = subba_name,
                      value = NA)
   }
 
 }
 
-attr(us_subregion, "type") <- "Electricity"
-attr(us_subregion, "description") <- "Hourly demand by sub-region"
-attr(us_subregion, "source") <- "EIA API, form EIA-930 Product: Hourly Electric Grid Monitor"
-attr(us_subregion, "api") <- "https://api.eia.gov/v2/electricity/rto/region-sub-ba-data/data/"
-attr(us_subregion, "url") <- "https://www.eia.gov/opendata/browser/electricity/rto/region-sub-ba-data"
-attr(us_subregion, "sub-regions") <- unique(us_subregion$subregion)
-attr(us_subregion, "balancing authority") <- unique(us_subregion$balancing_authority)
-attr(us_subregion, "units") <- c("megawatthours")
-attr(us_subregion, "frequency") <- "hourly"
+attr(nyis, "type") <- "Electricity"
+attr(nyis, "description") <- "New York Independent System Operator hourly demand by sub-region"
+attr(nyis, "source") <- "EIA API, form EIA-930 Product: Hourly Electric Grid Monitor"
+attr(nyis, "api") <- "https://api.eia.gov/v2/electricity/rto/region-sub-ba-data/data/"
+attr(nyis, "url") <- "https://www.eia.gov/opendata/browser/electricity/rto/region-sub-ba-data"
+attr(nyis, "sub-regions") <- unique(nyis$subregion)
+attr(nyis, "balancing authority") <- unique(nyis$balancing_authority)
+attr(nyis, "units") <- c("megawatthours")
+attr(nyis, "frequency") <- "hourly"
 
-usethis::use_data(us_subregion, overwrite = TRUE)
+usethis::use_data(nyis, overwrite = TRUE)
 
 
-elec_metadata$start <-  as.POSIXct(elec_metadata$start, origin = '1970-01-01 00:00:00 UTC')
-elec_metadata$end <-  as.POSIXct(elec_metadata$end, origin = '1970-01-01 00:00:00 UTC')
+nyis_metadata$start <-  as.POSIXct(nyis_metadata$start, origin = '1970-01-01 00:00:00 UTC')
+nyis_metadata$end <-  as.POSIXct(nyis_metadata$end, origin = '1970-01-01 00:00:00 UTC')
 
-saveRDS(elec_metadata, file = "./data_raw/sub_region_metadata.rds")
+saveRDS(nyis_metadata, file = "./data_raw/sub_region_metadata.rds")
+write.csv(nyis, "./csv/hourly sub-region demand.csv", row.names = FALSE)

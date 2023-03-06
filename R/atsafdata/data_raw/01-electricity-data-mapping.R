@@ -113,6 +113,15 @@
 #   "api-version": "2.0.3"
 # }
 
+# Focusing on the following parent sub regions
+# CISO 4
+# ERCO 8
+# ISNE 8
+# NYIS 11
+# PNM 8
+
+parents <- c( "NYIS")
+
 # Creating a generic query to pull the data
 # Taking distinct values of sub-region and balancing authority to create a mapping
 
@@ -122,16 +131,17 @@ sub_region_mapping <- EIAapi::eia_get(api_key = Sys.getenv("eia_key"),
                      format = "data.frame",
                      start = "2018-06-19T00",
                      length = 5000,
-                     offset = 0) %>%
-  dplyr::select(subba, subba_name = `subba-name`, parent, parent_name = `parent-name`) %>%
-  dplyr::distinct()
+                     offset = 0) |>
+  dplyr::select(subba, subba_name = `subba-name`, parent, parent_name = `parent-name`) |>
+  dplyr::distinct() |>
+  dplyr::filter(parent %in% parents)
 
 # Expected 82 distinct values
 head(sub_region_mapping)
-if(length(unique(sub_region_mapping$subba)) != 82){
+if(length(unique(sub_region_mapping$subba)) != 11){
   stop("The number of sub-regions is missing ")
-} else if(length(unique(sub_region_mapping$parent)) != 8 ||
-          length(unique(sub_region_mapping$parent_name)) != 8){
+} else if(length(unique(sub_region_mapping$parent)) != 1 ||
+          length(unique(sub_region_mapping$parent_name)) != 1){
   stop("The number of parent is missing ")
 }
 
