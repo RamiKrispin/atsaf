@@ -23,11 +23,11 @@ series:
 
 Currently the package is not available on CRAN, and you can be install
 the development version of atsafdata from
-[GitHub](https://github.com/RamiKrispin/atsaf/R/atsafdata):
+[GitHub](https://github.com/RamiKrispin/atsaf/tree/atsafdata/R/atsafdata):
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("https://github.com/RamiKrispin/atsaf/R/atsafdata")
+devtools::install_github("https://github.com/RamiKrispin/atsaf/tree/atsafdata/R/atsafdata")
 ```
 
 ## Examples
