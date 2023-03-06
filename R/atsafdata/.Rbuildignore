@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^data_raw$
+^dev$
+^csv$
+^LICENSE\.md$
