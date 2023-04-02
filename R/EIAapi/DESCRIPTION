@@ -1,7 +1,7 @@
 Package: EIAapi
 Type: Package
 Title: Functions for query data from the EIA API
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person(given = "Rami", 
                     family ="Krispin", 
                     email = "rami.krispin@gmail.com",
@@ -14,5 +14,5 @@ LazyData: true
 RoxygenNote: 7.2.1
 Suggests:
   data.table (>= 1.14.2)
-SystemRequirements: 
-  jq
+SystemRequirements: The package required the jq command line library. Please check https://stedolan.github.io/jq/download/ for download instructions.
+
