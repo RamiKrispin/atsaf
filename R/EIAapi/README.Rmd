@@ -22,10 +22,9 @@ knitr::opts_chunk$set(
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/EIAapu)](https://cran.r-project.org/package=EIAapi)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/)
 <!-- badges: end -->
 
-WIP - pre-testing.
 
 The **EIAapi** package provides a function to query data from the [EIA API
 v2](https://www.eia.gov/opendata/).
@@ -63,11 +62,11 @@ function:
     -   API URL
     -   Header
 
-[![](man/images/EIA_API_browser.png)](https://www.eia.gov/opendata/browser/)
+[![](man/figures/EIA_API_browser.png)](https://www.eia.gov/opendata/browser/)
 
 In the example above: 
 
-- The API URL: https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/, and
+- The API URL: `https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/`, and
 - The query header: 
 ```JSON
 {
@@ -109,7 +108,7 @@ nrow(df1)
 head(df1)
 ```
 
-The `eia_get` function leverages the [jq](https://stedolan.github.io/jq/) tool to parse the return JSON object from the API into CSV format and the [data.table](https://cran.r-project.org/web/packages/data.table/) package to read and parse the object into R. By default, the function returns a `data.frame` object, but you can use the `format` argument and set the output object as `data.table`:
+The `eia_get` function leverages the [jq](https://stedolan.github.io/jq/) tool to parse the return JSON object from the API into CSV format and the [data.table](https://CRAN.R-project.org/package=data.table) package to read and parse the object into R. By default, the function returns a `data.frame` object, but you can use the `format` argument and set the output object as `data.table`:
 
 ```{r}
 df2 <- eia_get(
@@ -223,4 +222,3 @@ plot(x = df5$time, y = df5$value,
      frame=FALSE,
      type = "l")
 ```
-

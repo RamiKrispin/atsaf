@@ -8,10 +8,8 @@
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/EIAapu)](https://cran.r-project.org/package=EIAapi)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/)
 <!-- badges: end -->
-
-WIP - pre-testing.
 
 The **EIAapi** package provides a function to query data from the [EIA
 API v2](https://www.eia.gov/opendata/).
@@ -51,12 +49,12 @@ function:
     -   API URL
     -   Header
 
-[![](man/images/EIA_API_browser.png)](https://www.eia.gov/opendata/browser/)
+[![](man/figures/EIA_API_browser.png)](https://www.eia.gov/opendata/browser/)
 
 In the example above:
 
 -   The API URL:
-    <https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/>, and
+    `https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/`, and
 -   The query header:
 
 ``` json
@@ -118,10 +116,10 @@ head(df1)
 The `eia_get` function leverages the
 [jq](https://stedolan.github.io/jq/) tool to parse the return JSON
 object from the API into CSV format and the
-[data.table](https://cran.r-project.org/web/packages/data.table/)
-package to read and parse the object into R. By default, the function
-returns a `data.frame` object, but you can use the `format` argument and
-set the output object as `data.table`:
+[data.table](https://CRAN.R-project.org/package=data.table) package to
+read and parse the object into R. By default, the function returns a
+`data.frame` object, but you can use the `format` argument and set the
+output object as `data.table`:
 
 ``` r
 df2 <- eia_get(
@@ -248,29 +246,29 @@ df4 <- eia_get(
 
 df4
 #>              period respondent        respondent-name fueltype   type-name
-#>    1: 2018-07-01T05       US48 United States Lower 48       NG Natural gas
-#>    2: 2018-07-01T06       US48 United States Lower 48       NG Natural gas
-#>    3: 2018-07-01T07       US48 United States Lower 48       NG Natural gas
-#>    4: 2018-07-01T08       US48 United States Lower 48       NG Natural gas
-#>    5: 2018-07-01T09       US48 United States Lower 48       NG Natural gas
+#>    1: 2019-09-03T02       US48 United States Lower 48       NG Natural gas
+#>    2: 2019-09-02T08       US48 United States Lower 48       NG Natural gas
+#>    3: 2019-09-02T06       US48 United States Lower 48       NG Natural gas
+#>    4: 2019-09-03T03       US48 United States Lower 48       NG Natural gas
+#>    5: 2019-09-02T16       US48 United States Lower 48       NG Natural gas
 #>   ---                                                                     
-#> 4996: 2019-01-25T08       US48 United States Lower 48       NG Natural gas
-#> 4997: 2019-01-25T09       US48 United States Lower 48       NG Natural gas
-#> 4998: 2019-01-25T10       US48 United States Lower 48       NG Natural gas
-#> 4999: 2019-01-25T11       US48 United States Lower 48       NG Natural gas
-#> 5000: 2019-01-25T12       US48 United States Lower 48       NG Natural gas
+#> 4996: 2018-11-09T20       US48 United States Lower 48       NG Natural gas
+#> 4997: 2018-11-09T21       US48 United States Lower 48       NG Natural gas
+#> 4998: 2018-11-07T11       US48 United States Lower 48       NG Natural gas
+#> 4999: 2018-11-07T12       US48 United States Lower 48       NG Natural gas
+#> 5000: 2018-11-07T13       US48 United States Lower 48       NG Natural gas
 #>        value   value-units
-#>    1:  66791 megawatthours
-#>    2:  95197 megawatthours
-#>    3:  91741 megawatthours
-#>    4: 103817 megawatthours
-#>    5:  99727 megawatthours
+#>    1: 238622 megawatthours
+#>    2: 149180 megawatthours
+#>    3: 164671 megawatthours
+#>    4: 217190 megawatthours
+#>    5: 206225 megawatthours
 #>   ---                     
-#> 4996: 133329 megawatthours
-#> 4997: 133331 megawatthours
-#> 4998: 140225 megawatthours
-#> 4999: 153020 megawatthours
-#> 5000: 169674 megawatthours
+#> 4996: 145412 megawatthours
+#> 4997: 147572 megawatthours
+#> 4998: 109269 megawatthours
+#> 4999: 123157 megawatthours
+#> 5000: 132755 megawatthours
 
 unique(df4$fueltype)
 #> [1] "NG"
@@ -314,11 +312,11 @@ df5
 #>    4: 215728 megawatthours
 #>    5: 183732 megawatthours
 #>   ---                     
-#> 2925: 186357 megawatthours
-#> 2926: 190568 megawatthours
-#> 2927: 196053 megawatthours
-#> 2928: 198863 megawatthours
-#> 2929: 200753 megawatthours
+#> 2925: 186416 megawatthours
+#> 2926: 190630 megawatthours
+#> 2927: 196122 megawatthours
+#> 2928: 198929 megawatthours
+#> 2929: 200809 megawatthours
 
 df5$time <- as.POSIXct(paste(substr(df5$period, start = 1, stop = 10)," ", 
                        substr(df5$period, start = 12, stop = 13), ":00:00", 
