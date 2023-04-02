@@ -337,3 +337,10 @@ plot(x = df5$time, y = df5$value,
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
+## API Resources
+
+-   EIA API documentation:
+    <https://www.eia.gov/opendata/documentation.php>
+-   EIA APIv2 Webinar:
+    <https://www.youtube.com/watch?v=1VsSp1XG-Pg&t=1671s&ab_channel=EIAgov>
