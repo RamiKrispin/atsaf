@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">EIAapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -63,7 +63,6 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>WIP - pre-testing.</p>
 <p>The <strong>EIAapi</strong> package provides a function to query data from the <a href="https://www.eia.gov/opendata/" class="external-link">EIA API v2</a>.</p>
 <div class="section level2">
 <h2 id="requirments">Requirments<a class="anchor" aria-label="anchor" href="#requirments"></a>
@@ -97,10 +96,10 @@
 </ul>
 </li>
 </ul>
-<p><a href="https://www.eia.gov/opendata/browser/" class="external-link"><img src="man/images/EIA_API_browser.png"></a></p>
+<p><a href="https://www.eia.gov/opendata/browser/" class="external-link"><img src="reference/figures/EIA_API_browser.png"></a></p>
 <p>In the example above:</p>
 <ul>
-<li>The API URL: <a href="https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/" class="external-link uri">https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/</a>, and</li>
+<li>The API URL: <code>https://api.eia.gov/v2/electricity/rto/fuel-type-data/data/</code>, and</li>
 <li>The query header:</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -152,7 +151,7 @@
 <span><span class="co">#&gt; 4       Other   795 megawatthours</span></span>
 <span><span class="co">#&gt; 5 Natural gas  1551 megawatthours</span></span>
 <span><span class="co">#&gt; 6     Nuclear  2001 megawatthours</span></span></code></pre></div>
-<p>The <code>eia_get</code> function leverages the <a href="https://stedolan.github.io/jq/" class="external-link">jq</a> tool to parse the return JSON object from the API into CSV format and the <a href="https://cran.r-project.org/web/packages/data.table/" class="external-link">data.table</a> package to read and parse the object into R. By default, the function returns a <code>data.frame</code> object, but you can use the <code>format</code> argument and set the output object as <code>data.table</code>:</p>
+<p>The <code>eia_get</code> function leverages the <a href="https://stedolan.github.io/jq/" class="external-link">jq</a> tool to parse the return JSON object from the API into CSV format and the <a href="https://CRAN.R-project.org/package=data.table" class="external-link">data.table</a> package to read and parse the object into R. By default, the function returns a <code>data.frame</code> object, but you can use the <code>format</code> argument and set the output object as <code>data.table</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/eia_get.html">eia_get</a></span><span class="op">(</span></span>
 <span>  api_key <span class="op">=</span> <span class="va">api_key</span>,</span>
@@ -263,29 +262,29 @@
 <span></span>
 <span><span class="va">df4</span></span>
 <span><span class="co">#&gt;              period respondent        respondent-name fueltype   type-name</span></span>
-<span><span class="co">#&gt;    1: 2018-07-01T05       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt;    2: 2018-07-01T06       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt;    3: 2018-07-01T07       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt;    4: 2018-07-01T08       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt;    5: 2018-07-01T09       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt;    1: 2019-09-03T02       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt;    2: 2019-09-02T08       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt;    3: 2019-09-02T06       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt;    4: 2019-09-03T03       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt;    5: 2019-09-02T16       US48 United States Lower 48       NG Natural gas</span></span>
 <span><span class="co">#&gt;   ---                                                                     </span></span>
-<span><span class="co">#&gt; 4996: 2019-01-25T08       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt; 4997: 2019-01-25T09       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt; 4998: 2019-01-25T10       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt; 4999: 2019-01-25T11       US48 United States Lower 48       NG Natural gas</span></span>
-<span><span class="co">#&gt; 5000: 2019-01-25T12       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt; 4996: 2018-11-09T20       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt; 4997: 2018-11-09T21       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt; 4998: 2018-11-07T11       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt; 4999: 2018-11-07T12       US48 United States Lower 48       NG Natural gas</span></span>
+<span><span class="co">#&gt; 5000: 2018-11-07T13       US48 United States Lower 48       NG Natural gas</span></span>
 <span><span class="co">#&gt;        value   value-units</span></span>
-<span><span class="co">#&gt;    1:  66791 megawatthours</span></span>
-<span><span class="co">#&gt;    2:  95197 megawatthours</span></span>
-<span><span class="co">#&gt;    3:  91741 megawatthours</span></span>
-<span><span class="co">#&gt;    4: 103817 megawatthours</span></span>
-<span><span class="co">#&gt;    5:  99727 megawatthours</span></span>
+<span><span class="co">#&gt;    1: 238622 megawatthours</span></span>
+<span><span class="co">#&gt;    2: 149180 megawatthours</span></span>
+<span><span class="co">#&gt;    3: 164671 megawatthours</span></span>
+<span><span class="co">#&gt;    4: 217190 megawatthours</span></span>
+<span><span class="co">#&gt;    5: 206225 megawatthours</span></span>
 <span><span class="co">#&gt;   ---                     </span></span>
-<span><span class="co">#&gt; 4996: 133329 megawatthours</span></span>
-<span><span class="co">#&gt; 4997: 133331 megawatthours</span></span>
-<span><span class="co">#&gt; 4998: 140225 megawatthours</span></span>
-<span><span class="co">#&gt; 4999: 153020 megawatthours</span></span>
-<span><span class="co">#&gt; 5000: 169674 megawatthours</span></span>
+<span><span class="co">#&gt; 4996: 145412 megawatthours</span></span>
+<span><span class="co">#&gt; 4997: 147572 megawatthours</span></span>
+<span><span class="co">#&gt; 4998: 109269 megawatthours</span></span>
+<span><span class="co">#&gt; 4999: 123157 megawatthours</span></span>
+<span><span class="co">#&gt; 5000: 132755 megawatthours</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">df4</span><span class="op">$</span><span class="va">fueltype</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "NG"</span></span>
@@ -324,11 +323,11 @@
 <span><span class="co">#&gt;    4: 215728 megawatthours</span></span>
 <span><span class="co">#&gt;    5: 183732 megawatthours</span></span>
 <span><span class="co">#&gt;   ---                     </span></span>
-<span><span class="co">#&gt; 2925: 186357 megawatthours</span></span>
-<span><span class="co">#&gt; 2926: 190568 megawatthours</span></span>
-<span><span class="co">#&gt; 2927: 196053 megawatthours</span></span>
-<span><span class="co">#&gt; 2928: 198863 megawatthours</span></span>
-<span><span class="co">#&gt; 2929: 200753 megawatthours</span></span>
+<span><span class="co">#&gt; 2925: 186416 megawatthours</span></span>
+<span><span class="co">#&gt; 2926: 190630 megawatthours</span></span>
+<span><span class="co">#&gt; 2927: 196122 megawatthours</span></span>
+<span><span class="co">#&gt; 2928: 198929 megawatthours</span></span>
+<span><span class="co">#&gt; 2929: 200809 megawatthours</span></span>
 <span></span>
 <span><span class="va">df5</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">df5</span><span class="op">$</span><span class="va">period</span>, start <span class="op">=</span> <span class="fl">1</span>, stop <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,<span class="st">" "</span>, </span>
 <span>                       <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">df5</span><span class="op">$</span><span class="va">period</span>, start <span class="op">=</span> <span class="fl">12</span>, stop <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>, <span class="st">":00:00"</span>, </span>
@@ -380,7 +379,7 @@
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=EIAapi" class="external-link"><img src="https://www.r-pkg.org/badges/version/EIAapu" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></li>
-<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></li>
+<li><a href="https://opensource.org/license/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a></li>
 </ul>
 </div>
 
